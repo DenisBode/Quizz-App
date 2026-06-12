@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body onload="init()">
 
     <!-- As a heading -->
     <nav class="navbar bg-body-tertiary">
@@ -31,30 +31,30 @@
         <div class="card quiz-card">
             <img src="./img/quiz.jpg" class="card-img-top">
             <div class="card-body">
-                <h5 class="card-title">Frage</h5>
+                <h5 class="card-title" id="questiontext">Frage</h5>
                 <div class="card mb-2">
-                    <div class="card-body">
+                    <div class="card-body" id="answer_1">
                         Antwort
                     </div>
                 </div>
                 <div class="card mb-2">
-                    <div class="card-body">
+                    <div class="card-body" id="answer_2">
                         Antwort
                     </div>
                 </div>
                 <div class="card mb-2">
-                    <div class="card-body">
+                    <div class="card-body" id="answer_3">
                         Antwort </div>
                 </div>
                 <div class="card mb-2">
-                    <div class="card-body">
+                    <div class="card-body" id="answer_4">
                         Antwort
                     </div>
                 </div>
 
                 <div class="question-footer">
                     <span>
-                        <b>1</b> von <b>5</b> Anworten
+                        <b>1</b> von <b id="all-questions">5</b> Anworten
                     </span>
                     <button type="button" class="btn btn-primary">Nächste Frage</button>
                 </div>
@@ -62,5 +62,7 @@
         </div>
     </div>
 </body>
+
+<script src="./script.js"></script>
 
 </html>

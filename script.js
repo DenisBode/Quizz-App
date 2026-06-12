@@ -14,39 +14,40 @@ let questions = [
         "answer_3": "RAM",
         "answer_4": "Netzteil",
         "right_answer": 3
-    },
-    {
-        "question": "Welches Betriebssystem stammt von Apple?",
-        "answer_1": "Windows",
-        "answer_2": "Linux",
-        "answer_3": "macOS",
-        "answer_4": "Android",
-        "right_answer": 3
-    },
-    {
-        "question": "Was ist die Hauptaufgabe einer GPU?",
-        "answer_1": "Soundwiedergabe",
-        "answer_2": "Grafikberechnung",
-        "answer_3": "Datenspeicherung",
-        "answer_4": "Stromversorgung",
-        "right_answer": 2
-    },
-    {
-        "question": "Wofür steht 'WWW'?",
-        "answer_1": "World Wide Web",
-        "answer_2": "World Wide Work",
-        "answer_3": "Wide World Web",
-        "answer_4": "Web World Wide",
-        "right_answer": 1
-    },
-    {
-        "question": "Welche Taste wird meist zum Kopieren genutzt?",
-        "answer_1": "Strg + V",
-        "answer_2": "Strg + X",
-        "answer_3": "Strg + C",
-        "answer_4": "Strg + Z",
-        "right_answer": 3
     }
+    // },
+    // {
+    //     "question": "Welches Betriebssystem stammt von Apple?",
+    //     "answer_1": "Windows",
+    //     "answer_2": "Linux",
+    //     "answer_3": "macOS",
+    //     "answer_4": "Android",
+    //     "right_answer": 3
+    // },
+    // {
+    //     "question": "Was ist die Hauptaufgabe einer GPU?",
+    //     "answer_1": "Soundwiedergabe",
+    //     "answer_2": "Grafikberechnung",
+    //     "answer_3": "Datenspeicherung",
+    //     "answer_4": "Stromversorgung",
+    //     "right_answer": 2
+    // },
+    // {
+    //     "question": "Wofür steht 'WWW'?",
+    //     "answer_1": "World Wide Web",
+    //     "answer_2": "World Wide Work",
+    //     "answer_3": "Wide World Web",
+    //     "answer_4": "Web World Wide",
+    //     "right_answer": 1
+    // },
+    // {
+    //     "question": "Welche Taste wird meist zum Kopieren genutzt?",
+    //     "answer_1": "Strg + V",
+    //     "answer_2": "Strg + X",
+    //     "answer_3": "Strg + C",
+    //     "answer_4": "Strg + Z",
+    //     "right_answer": 3
+    // }
     // },
     // {
     //     "question": "Was ist ein Beispiel für ein Eingabegerät?",
@@ -163,9 +164,12 @@ let questions = [
 ];
 
 let currentQuestion = 0;
+let rightQuestions = 0;
+let answerSelected = false;
 
 function init() {
     document.getElementById('all-questions').innerHTML = questions.length;
+    document.getElementById('all-questions-end').innerHTML = questions.length;
 
     showQuestions();
 }
@@ -175,6 +179,8 @@ function showQuestions() {
     if (currentQuestion >= questions.length) {
         document.getElementById('endScreen').style = '';
         document.getElementById('questionBody').style = 'display: none';
+        showEndSreenDetails();
+        document.getElementById('header-image').src = 'img/trophy.png';
 
     } else {
 
@@ -191,11 +197,18 @@ function showQuestions() {
 }
 
 function answer(selection) {
+    if (answerSelected) {
+        return;
+    }
+
+    answerSelected = true;
+
     let question = questions[currentQuestion];
     let selectedQuestionNumber = selection.slice(-1);
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
     if (selectedQuestionNumber == question['right_answer']) {
+        rightQuestions++;
         document.getElementById(selection).parentNode.classList.add('bg-success');
 
     } else {
@@ -211,6 +224,7 @@ function nextQuestion() {
     showQuestions(); // ruft die Funktion showQuestions auf
 
     document.getElementById('next-button').disabled = true; // setzt die klickbarkeit des Buttons wieder auf klickbar
+    answerSelected = false;
 
     resetAnswerButton();
 
@@ -234,8 +248,8 @@ function resetAnswerButton() {
 }
 
 function showEndSreenDetails() {
-    document.getElementById('all-questions').innerHTML = questions.length;
+    document.getElementById('all-questions-end').innerHTML = questions.length;
 
-    document.getElementById('correct-questions').innerHTML = questions.length;
+    document.getElementById('correct-questions').innerHTML = rightQuestions;
 
 }

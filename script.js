@@ -179,3 +179,25 @@ function showQuestions() {
     document.getElementById('answer_4').innerHTML = question['answer_4'];
 
 }
+
+function answer(selection) {
+    let question = questions[currentQuestion];
+    console.log('selected answer is:', selection);
+    let selectedQuestionNumber = selection.slice(-1);
+    console.log('selected Question Number is', selectedQuestionNumber);
+    console.log('current answer is', question['right_answer']);
+
+    let idOfRightAnswer = `answer_${question['right_answer']}`;
+
+    if (selectedQuestionNumber == question['right_answer']) {
+        console.log('richtige Antwort');
+        document.getElementById(selection).parentNode.classList.add('bg-success');
+
+    } else {
+        console.log('falsche Antwort');
+        document.getElementById(selection).parentNode.classList.add('bg-danger');
+        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+    }
+    document.getElementById('next-button').disabled = false;
+
+}

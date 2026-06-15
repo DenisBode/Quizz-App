@@ -169,6 +169,7 @@ let rightQuestions = 0;
 let answerSelected = false;
 
 function init() {
+
     document.getElementById('all-questions').innerHTML = questions.length;
     document.getElementById('all-questions-end').innerHTML = questions.length;
 
@@ -176,34 +177,48 @@ function init() {
 }
 
 function showQuestions() {
-    // Show Endscreen
 
-    if (currentQuestion >= questions.length) {
-        document.getElementById('endScreen').style = '';
-        document.getElementById('questionBody').style = 'display: none';
-        showEndSreenDetails();
-        document.getElementById('header-image').src = 'img/trophy.png';
+    if (gameIsOver()) {
 
-    } else { // Show next Questions
+        showEndScreen();
 
-        let question = questions[currentQuestion];
+    } else {
+        updateProgressBar();
+        updateToNextQuestions();
 
-        let percent = (currentQuestion + 1) / questions.length;
-        percent = Math.round(percent * 100);
-        document.getElementById('progress-bar').innerHTML = `${percent} %`;
-        document.getElementById('progress-bar').style = `width: ${percent}%`;
-
-        console.log('Fortschritt:', percent);
-
-
-
-        document.getElementById('question-number').innerHTML = currentQuestion + 1;
-        document.getElementById('questiontext').innerHTML = question['question'];
-        document.getElementById('answer_1').innerHTML = question['answer_1'];
-        document.getElementById('answer_2').innerHTML = question['answer_2'];
-        document.getElementById('answer_3').innerHTML = question['answer_3'];
-        document.getElementById('answer_4').innerHTML = question['answer_4'];
     }
+}
+
+function gameIsOver() {
+    return currentQuestion >= questions.length;
+}
+
+function updateToNextQuestions() {
+
+    document.getElementById('endScreen').style = '';
+    document.getElementById('questionBody').style = 'display: none';
+    showEndSreenDetails();
+    document.getElementById('header-image').src = 'img/trophy.png';
+}
+
+function updateProgressBar() {
+    let percent = (currentQuestion + 1) / questions.length;
+    percent = Math.round(percent * 100);
+    document.getElementById('progress-bar').innerHTML = `${percent} %`;
+    document.getElementById('progress-bar').style = `width: ${percent}%`;
+}
+
+function showNextQuestions() {
+
+    let question = questions[currentQuestion];
+
+    document.getElementById('question-number').innerHTML = currentQuestion + 1;
+    document.getElementById('questiontext').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
+
 }
 
 function answer(selection) {

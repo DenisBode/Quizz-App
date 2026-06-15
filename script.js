@@ -14,32 +14,33 @@ let questions = [
         "answer_3": "RAM",
         "answer_4": "Netzteil",
         "right_answer": 3
+    },
+
+    {
+        "question": "Welches Betriebssystem stammt von Apple?",
+        "answer_1": "Windows",
+        "answer_2": "Linux",
+        "answer_3": "macOS",
+        "answer_4": "Android",
+        "right_answer": 3
+    },
+    {
+        "question": "Was ist die Hauptaufgabe einer GPU?",
+        "answer_1": "Soundwiedergabe",
+        "answer_2": "Grafikberechnung",
+        "answer_3": "Datenspeicherung",
+        "answer_4": "Stromversorgung",
+        "right_answer": 2
+    },
+    {
+        "question": "Wofür steht 'WWW'?",
+        "answer_1": "World Wide Web",
+        "answer_2": "World Wide Work",
+        "answer_3": "Wide World Web",
+        "answer_4": "Web World Wide",
+        "right_answer": 1
     }
-    // },
-    // {
-    //     "question": "Welches Betriebssystem stammt von Apple?",
-    //     "answer_1": "Windows",
-    //     "answer_2": "Linux",
-    //     "answer_3": "macOS",
-    //     "answer_4": "Android",
-    //     "right_answer": 3
-    // },
-    // {
-    //     "question": "Was ist die Hauptaufgabe einer GPU?",
-    //     "answer_1": "Soundwiedergabe",
-    //     "answer_2": "Grafikberechnung",
-    //     "answer_3": "Datenspeicherung",
-    //     "answer_4": "Stromversorgung",
-    //     "right_answer": 2
-    // },
-    // {
-    //     "question": "Wofür steht 'WWW'?",
-    //     "answer_1": "World Wide Web",
-    //     "answer_2": "World Wide Work",
-    //     "answer_3": "Wide World Web",
-    //     "answer_4": "Web World Wide",
-    //     "right_answer": 1
-    // },
+    ,
     // {
     //     "question": "Welche Taste wird meist zum Kopieren genutzt?",
     //     "answer_1": "Strg + V",
@@ -175,6 +176,7 @@ function init() {
 }
 
 function showQuestions() {
+    // Show Endscreen
 
     if (currentQuestion >= questions.length) {
         document.getElementById('endScreen').style = '';
@@ -182,9 +184,17 @@ function showQuestions() {
         showEndSreenDetails();
         document.getElementById('header-image').src = 'img/trophy.png';
 
-    } else {
+    } else { // Show next Questions
 
         let question = questions[currentQuestion];
+
+        let percent = (currentQuestion + 1) / questions.length;
+        percent = Math.round(percent * 100);
+        document.getElementById('progress-bar').innerHTML = `${percent} %`;
+        document.getElementById('progress-bar').style = `width: ${percent}%`;
+
+        console.log('Fortschritt:', percent);
+
 
 
         document.getElementById('question-number').innerHTML = currentQuestion + 1;

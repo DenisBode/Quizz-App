@@ -263,3 +263,12 @@ function showEndSreenDetails() {
     document.getElementById('correct-questions').innerHTML = rightQuestions;
 
 }
+
+function restartGame() {
+    document.getElementById('header-image').src = 'img/quiz.jpg';
+    document.getElementById('questionBody').style = ''; // questionBody wieder anzeigen
+    document.getElementById('endScreen').style = 'display: none'; // endScreen ausblenden
+    rightQuestions = 0;
+    currentQuestion = 0;
+    init();
+}

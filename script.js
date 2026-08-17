@@ -184,7 +184,7 @@ function showQuestions() {
 
     } else {
         updateProgressBar();
-        updateToNextQuestions();
+        showNextQuestions();
 
     }
 }
@@ -193,7 +193,7 @@ function gameIsOver() {
     return currentQuestion >= questions.length;
 }
 
-function updateToNextQuestions() {
+function showEndScreen() {
 
     document.getElementById('endScreen').style = '';
     document.getElementById('questionBody').style = 'display: none';
